@@ -9,7 +9,7 @@ public class Cell {
     }
 
     public CellState GetNextState(int i) {
-        if (i > 1) {
+        if (i > 1 && i < 4) {
             return CellState.ALIVE;
         } else {
             return CellState.DEAD;

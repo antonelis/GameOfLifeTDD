@@ -42,4 +42,10 @@ class CellTest {
         CellState actual = cell.GetNextState(3);
         assertEquals(CellState.ALIVE, actual);
     }
+    @Test
+    public void cellShouldDieWithFourNeighbours(){
+        Cell cell = new Cell(CellState.ALIVE);
+        CellState actual = cell.GetNextState(4);
+        assertEquals(CellState.DEAD, actual);
+    }
 }
