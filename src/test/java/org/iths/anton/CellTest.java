@@ -18,22 +18,28 @@ class CellTest {
 
     @Test
     public void cellShouldDieWithOnlyOneNeighbour() {
-        Cell aloneCell = new Cell(CellState.ALIVE);
-        CellState actual = aloneCell.GetNextState(1);
+        Cell cell = new Cell(CellState.ALIVE);
+        CellState actual = cell.GetNextState(1);
         assertEquals(CellState.DEAD, actual);
     }
 
     @Test
     public void cellShouldDieWithZeroNeighbours() {
-        Cell aloneCell = new Cell(CellState.ALIVE);
-        CellState actual = aloneCell.GetNextState(0);
+        Cell cell = new Cell(CellState.ALIVE);
+        CellState actual = cell.GetNextState(0);
         assertEquals(CellState.DEAD, actual);
     }
 
     @Test
     public void cellShouldLiveWithTwoNeighbours(){
-        Cell aloneCell = new Cell(CellState.ALIVE);
-        CellState actual = aloneCell.GetNextState(2);
+        Cell cell = new Cell(CellState.ALIVE);
+        CellState actual = cell.GetNextState(2);
+        assertEquals(CellState.ALIVE, actual);
+    }
+    @Test
+    public void cellShouldLiveWithThreeNeighbours(){
+        Cell cell = new Cell(CellState.ALIVE);
+        CellState actual = cell.GetNextState(3);
         assertEquals(CellState.ALIVE, actual);
     }
 }
