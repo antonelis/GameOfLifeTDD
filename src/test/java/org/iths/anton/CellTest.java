@@ -71,4 +71,11 @@ class CellTest {
         CellState actual = cell.GetNextState(8);
         assertEquals(CellState.DEAD, actual);
     }
+
+    @Test
+    public void cellShouldBecomeAliveWithThreeNeighbours(){
+        Cell cell = new Cell(CellState.DEAD);
+        CellState actual = cell.GetNextState(3);
+        assertEquals(CellState.ALIVE, actual);
+    }
 }
