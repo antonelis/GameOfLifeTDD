@@ -20,6 +20,13 @@ class CellTest {
         Cell aloneCell = new Cell(CellState.ALIVE);
         CellState actual = aloneCell.GetNextState(1);
         assertEquals(CellState.DEAD,actual);
-
     }
+
+    @Test
+    public void cellShouldDieWithZeroNeighbours() {
+        Cell aloneCell = new Cell(CellState.ALIVE);
+        CellState actual = aloneCell.GetNextState(0);
+        assertEquals(CellState.DEAD,actual);
+    }
+
 }
