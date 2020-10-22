@@ -10,6 +10,7 @@ class CellTest {
     public void createInstanceOfAliveCell() {
         Cell aliveCell = new Cell(CellState.ALIVE);
     }
+
     @Test
     public void createInstanceOfDeadCell() {
         Cell deadCell = new Cell(CellState.DEAD);
@@ -19,14 +20,20 @@ class CellTest {
     public void cellShouldDieWithOnlyOneNeighbour() {
         Cell aloneCell = new Cell(CellState.ALIVE);
         CellState actual = aloneCell.GetNextState(1);
-        assertEquals(CellState.DEAD,actual);
+        assertEquals(CellState.DEAD, actual);
     }
 
     @Test
     public void cellShouldDieWithZeroNeighbours() {
         Cell aloneCell = new Cell(CellState.ALIVE);
         CellState actual = aloneCell.GetNextState(0);
-        assertEquals(CellState.DEAD,actual);
+        assertEquals(CellState.DEAD, actual);
     }
 
+    @Test
+    public void cellShouldLiveWithTwoNeighbours(){
+        Cell aloneCell = new Cell(CellState.ALIVE);
+        CellState actual = aloneCell.GetNextState(2);
+        assertEquals(CellState.ALIVE, actual);
+    }
 }
