@@ -9,10 +9,20 @@ public class Cell {
     }
 
     public CellState GetNextState(int i) {
-        if (i > 1 && i < 4) {
-            return CellState.ALIVE;
+        if (state == CellState.ALIVE) {
+            if (i > 1 && i < 4) {
+                return CellState.ALIVE;
+            } else {
+                return CellState.DEAD;
+            }
         } else {
-            return CellState.DEAD;
+            if (i == 3) {
+                return CellState.ALIVE;
+            }else{
+                return CellState.DEAD;
+            }
         }
     }
+
 }
+
