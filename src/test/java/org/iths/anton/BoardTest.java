@@ -19,5 +19,30 @@ class BoardTest {
         CellState[][] actual = board.getState();
         assertArrayEquals(original, actual);
     }
+
+    @Test
+    public void shouldUpdateCell() {
+        Board board = new Board(new CellState[][]{{X}});
+        board.update();
+        CellState[][] actual = board.getState();
+        assertEquals(CellState.DEAD, actual[0][0]);
+    }
+
+    @Test
+    public void shouldUpdateAllCells() {
+        Board board = new Board(new CellState[][]{
+                {O, X, X},
+                {X, O, X},
+                {O, O, X}
+        });
+        CellState[][] expected = new CellState[][]{
+                {O, X, X},
+                {O, O, X},
+                {O, X, O}
+        };
+        board.update();
+        CellState[][] actual = board.getState();
+        assertArrayEquals(expected,actual);
+    }
 }
 

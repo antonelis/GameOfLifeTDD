@@ -4,24 +4,84 @@ public class Board {
 
     private Cell[][] state;
 
-    public Board(CellState[][] cellStates) {
-        state = new Cell[cellStates.length][];
-        for (int row = 0; row < cellStates.length; row++) {
-            state[row] = new Cell[cellStates[row].length];
-            for (int col = 0; col < cellStates[row].length; col++) {
-                state[row][col] = new Cell(cellStates[row][col]);
+    public Board(CellState[][] CellStates) {
+        state = new Cell[CellStates.length][];
+        for (int row = 0; row < CellStates.length; row++) {
+            state[row] = new Cell[CellStates[row].length];
+            for (int col = 0; col < CellStates[row].length; col++) {
+                state[row][col] = new Cell(CellStates[row][col]);
             }
         }
     }
 
     public CellState[][] getState() {
-        CellState[][] cellStates = new CellState[state.length][];
+        CellState[][] CellStates = new CellState[state.length][];
         for (int row = 0; row < state.length; row++) {
-            cellStates[row] = new CellState[state[row].length];
+            CellStates[row] = new CellState[state[row].length];
             for (int col = 0; col < state[row].length; col++) {
-                cellStates[row][col] = state[row][col].getState();
+                CellStates[row][col] = state[row][col].getState();
             }
         }
-        return cellStates;
+        return CellStates;
+    }
+
+    public void update() {
+        CellState[][] cellStates = getState();
+        for (int row = 0; row < state.length; row++) {
+            for (int col = 0; col < state[row].length; col++) {
+                int numberOfAliveNeighbours = getNumberOfAliveNeighbours(cellStates, row, col);
+                state[row][col].update(numberOfAliveNeighbours);
+            }
+        }
+
+    }
+
+    private int getNumberOfAliveNeighbours(CellState[][] state, int row, int col) {
+        int numberOfAliveNeighbours = 0;
+        if (row > 0) {
+            int rowAbove = row - 1;
+            if (col > 0) {
+                if (state[rowAbove][col - 1] == CellState.ALIVE) {
+                    numberOfAliveNeighbours++;
+                }
+            }
+            if (state[rowAbove][col] == CellState.ALIVE) {
+                numberOfAliveNeighbours++;
+            }
+            if (col < state[row].length - 1) {
+                if (state[rowAbove][col + 1] == CellState.ALIVE) {
+                    numberOfAliveNeighbours++;
+                }
+            }
+
+        }
+        if (col > 0) {
+            if (state[row][col - 1] == CellState.ALIVE) {
+                numberOfAliveNeighbours++;
+            }
+        }
+        if (col < state[row].length - 1) {
+            if (state[row][col + 1] == CellState.ALIVE) {
+                numberOfAliveNeighbours++;
+            }
+        }
+
+        if (row < state.length -1) {
+            int rowAbove = row + 1;
+            if (col > 0) {
+                if (state[rowAbove][col - 1] == CellState.ALIVE) {
+                    numberOfAliveNeighbours++;
+                }
+            }
+            if (state[rowAbove][col] == CellState.ALIVE) {
+                numberOfAliveNeighbours++;
+            }
+            if (col < state[row].length - 1) {
+                if (state[rowAbove][col + 1] == CellState.ALIVE) {
+                    numberOfAliveNeighbours++;
+                }
+            }
+        }
+        return numberOfAliveNeighbours;
     }
 }

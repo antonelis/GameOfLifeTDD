@@ -8,18 +8,18 @@ public class Cell {
         this.state = state;
     }
 
-    public CellState GetNextState(int i) {
+    public void update(int i) {
         if (state == CellState.ALIVE) {
             if (i > 1 && i < 4) {
-                return CellState.ALIVE;
+                state = CellState.ALIVE;
             } else {
-                return CellState.DEAD;
+                state = CellState.DEAD;
             }
         } else {
             if (i == 3) {
-                return CellState.ALIVE;
+                state = CellState.ALIVE;
             }else{
-                return CellState.DEAD;
+                state = CellState.DEAD;
             }
         }
     }
