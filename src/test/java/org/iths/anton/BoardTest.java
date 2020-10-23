@@ -44,5 +44,21 @@ class BoardTest {
         CellState[][] actual = board.getState();
         assertArrayEquals(expected,actual);
     }
+    @Test
+    public void cellsShouldDieOfOvercrowding(){
+        Board board = new Board(new CellState[][]{
+                {X, X, X},
+                {X, X, X},
+                {X, X, X}
+        });
+        CellState[][] expected = new CellState[][]{
+                {X, O, X},
+                {O, O, O},
+                {X, O, X}
+        };
+        board.update();
+        CellState[][] actual = board.getState();
+        assertArrayEquals(expected,actual);
+    }
 }
 
