@@ -10,11 +10,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-
-        var label = new Label("Game" + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
+        View view = new View();
+        Scene scene = new Scene(view, 640, 480);
         stage.setScene(scene);
         stage.show();
+
+        view.draw();
     }
 
     public static void main(String[] args) {
