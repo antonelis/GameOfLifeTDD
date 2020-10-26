@@ -33,52 +33,31 @@ public class Board {
                 state[row][col].update(numberOfAliveNeighbours);
             }
         }
-
     }
 
     private int getNumberOfAliveNeighbours(CellState[][] state, int row, int col) {
         int numberOfAliveNeighbours = 0;
-        if (row > 0) {
-            int rowAbove = row - 1;
-            numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, col, rowAbove);
-        }
-
-        numberOfAliveNeighbours += getNumberOfAliveNeighboursOnLeftCell(state, col - 1, row);
-        if (col < state[row].length - 1) {
-            if (state[row][col + 1] == CellState.ALIVE) {
-                numberOfAliveNeighbours++;
-            }
-        }
-        if (row < state.length - 1) {
-            int rowAbove = row + 1;
-            numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, col, rowAbove);
-        }
+        numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, row - 1, col);
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col - 1);
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col + 1);
+        numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, row + 1, col);
         return numberOfAliveNeighbours;
     }
 
-    private int getNumberOfAliveNeighboursInRow(CellState[][] state, int col, int row) {
+    private int getNumberOfAliveNeighboursInRow(CellState[][] state, int row, int col) {
         int numberOfAliveNeighbours = 0;
-        numberOfAliveNeighbours += getNumberOfAliveNeighboursOnLeftCell(state, col - 1, row);
-        if (state[row][col] == CellState.ALIVE) {
-            numberOfAliveNeighbours++;
+        if( row >= 0 && row < state.length){
+            numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col - 1);
+            numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col);
+            numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col + 1);
         }
-        numberOfAliveNeighbours += getCountIFCellIsAlive(state, col + 1, row);
         return numberOfAliveNeighbours;
     }
 
-    private int getCountIFCellIsAlive(CellState[][] state, int col, int row) {
-        if (col < state[row].length) {
+    private int getCountIfCellIsAlive(CellState[][] state, int row, int col) {
+        if (col >= 0 && col < state[row].length) {
             if (state[row][col] == CellState.ALIVE) {
                return 1;
-            }
-        }
-        return 0;
-    }
-
-    private int getNumberOfAliveNeighboursOnLeftCell(CellState[][] state, int col, int row) {
-        if (col >= 0) {
-            if (state[row][col] == CellState.ALIVE) {
-                return 1;
             }
         }
         return 0;
