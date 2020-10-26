@@ -13,23 +13,25 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        View view = new View();
+      /*  View view = new View();
         Scene scene = new Scene(view, 640, 480);
         stage.setScene(scene);
         stage.show();
 
-      //  view.draw();
+        view.draw();
+      */
     }
 
     public static void main(String[] args) {
 
-      //Solution just for console print. Next step is implementation with JAVAFX
+        //Solution just for console print. Next step is implementation with JAVAFX
 
         CellState[][] startBoard = new CellState[][]{
                 {X, X, X, O, X, O, O, X, X, O},
                 {X, X, X, O, O, O, X, O, O, X},
                 {X, X, X, O, O, O, X, X, O, X}
         };
+        Board board = new Board(startBoard);
 
         System.out.println(Arrays.deepToString(startBoard)
                 .replace("], ", "\n")
@@ -37,9 +39,9 @@ public class App extends Application {
                 .replace("ALIVE", "X")
                 .replace("DEAD", "O")
                 .replace("]]", ""));
-        Board board = new Board(startBoard);
-        System.out.println("NEXT GENERATION");
-        board.update();
+
+        updatesBoardToNextGeneration(board);
+
         CellState[][] secondBoard = board.getState();
         System.out.println(Arrays.deepToString(secondBoard)
                 .replace("], ", "\n")
@@ -47,8 +49,9 @@ public class App extends Application {
                 .replace("ALIVE", "X")
                 .replace("DEAD", "O")
                 .replace("]]", ""));
-        System.out.println("NEXT GENERATION");
-        board.update();
+
+        updatesBoardToNextGeneration(board);
+
         CellState[][] thirdBoard = board.getState();
         System.out.println(Arrays.deepToString(thirdBoard)
                 .replace("], ", "\n")
@@ -57,5 +60,10 @@ public class App extends Application {
                 .replace("DEAD", "O")
                 .replace("]]", ""));
 
+    }
+
+    private static void updatesBoardToNextGeneration(Board board) {
+        System.out.println("NEXT GENERATION");
+        board.update();
     }
 }
