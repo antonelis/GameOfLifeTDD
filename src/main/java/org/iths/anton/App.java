@@ -1,7 +1,6 @@
 package org.iths.anton;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
