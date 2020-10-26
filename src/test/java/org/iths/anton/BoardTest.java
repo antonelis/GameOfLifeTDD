@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
+
     private static final CellState O = CellState.DEAD;
     private static final CellState X = CellState.ALIVE;
 

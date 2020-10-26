@@ -8,16 +8,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.transform.Affine;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class View extends VBox {
-
+/*
     private Button button;
     private Canvas canvas;
 
     private Affine affine;
-    private static final CellState O = CellState.DEAD;
-    private static final CellState X = CellState.ALIVE;
+
 
     public View() {
         this.button = new Button("Start");
@@ -34,19 +35,25 @@ public class View extends VBox {
         GraphicsContext gc = this.canvas.getGraphicsContext2D();
         gc.setTransform(this.affine);
         gc.setFill(Color.LIGHTGRAY);
+        
         gc.fillRect(0, 0, 450, 450);
-        CellState[][] expected = new CellState[][]{
-                {O, X, X},
-                {O, O, X},
-                {O, X, O}
-        };
+
+
+      /*  for (CellState[] cell : expected)
+        {
+            if (Predicate<String> containsLetterA = p -> p.contains("X"); )
+            {
+                gc.setFill(Color.BLACK);
+                gc.fillRect(15, 15, 15, 15);
+            }
+            else{
+                gc.setFill(Color.BLUE);
+                gc.fillRect(15, 15, 15, 15);
+            }
+        }
+
         gc.setFill(Color.BLACK);
-        // TODO
-      /*  if (Arrays.stream(expected).toString().contains("X")){
-            gc.fillRect(1, 1, 1, 1);
-        }else {
-            gc.setFill(Color.WHITE);
-            gc.fillRect(1, 1, 1, 1);
-        } */
+
     }
+    */
 }

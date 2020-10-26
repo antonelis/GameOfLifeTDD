@@ -2,11 +2,10 @@ package org.iths.anton;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
+
 
     @Override
     public void start(Stage stage) {
@@ -15,11 +14,12 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
 
-        view.draw();
+      //  view.draw();
     }
 
     public static void main(String[] args) {
-        launch();
-    }
 
+      //Solution just for console print. Next step is implementation with JAVAFX
+
+    }
 }

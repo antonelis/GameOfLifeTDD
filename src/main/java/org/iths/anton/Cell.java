@@ -10,13 +10,16 @@ public class Cell {
 
     public void update(int i) {
         if (state == CellState.ALIVE) {
-            if (i > 1 && i < 4) {
+            int MAX_NEIGHBOURS_TO_SURVIVE = 3;
+            int MIN_NEIGHBOURS_TO_SURVIVE = 2;
+            if (i >= MIN_NEIGHBOURS_TO_SURVIVE && i <= MAX_NEIGHBOURS_TO_SURVIVE) {
                 state = CellState.ALIVE;
             } else {
                 state = CellState.DEAD;
             }
         } else {
-            if (i == 3) {
+            int CELL_BECOMES_ALIVE_WITH_THREE_NEIGHBOURS = 3;
+            if (i == CELL_BECOMES_ALIVE_WITH_THREE_NEIGHBOURS) {
                 state = CellState.ALIVE;
             }else{
                 state = CellState.DEAD;
