@@ -35,21 +35,29 @@ public class Board {
         }
     }
 
-    private int getNumberOfAliveNeighbours(CellState[][] state, int row, int col) {
+    private int getNumberOfAliveNeighbours(CellState[][] state, int centerRow, int centerColumn) {
         int numberOfAliveNeighbours = 0;
-        numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, row - 1, col);
-        numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col - 1);
-        numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col + 1);
-        numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, row + 1, col);
+        int topRow = centerRow - 1;
+        int leftColumn = centerColumn - 1;
+        int rightColumn = centerColumn + 1;
+        int lowerRow = centerRow + 1;
+
+        numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, topRow, centerColumn);
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, centerRow, leftColumn);
+        numberOfAliveNeighbours += getCountIfCellIsAlive(state, centerRow, rightColumn);
+        numberOfAliveNeighbours += getNumberOfAliveNeighboursInRow(state, lowerRow, centerColumn);
         return numberOfAliveNeighbours;
     }
 
-    private int getNumberOfAliveNeighboursInRow(CellState[][] state, int row, int col) {
+    private int getNumberOfAliveNeighboursInRow(CellState[][] state, int row, int centerColumn) {
         int numberOfAliveNeighbours = 0;
+        int leftColumn = centerColumn - 1;
+        int rightColumn = centerColumn + 1;
+
         if( row >= 0 && row < state.length){
-            numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col - 1);
-            numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col);
-            numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, col + 1);
+            numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, leftColumn);
+            numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, centerColumn);
+            numberOfAliveNeighbours += getCountIfCellIsAlive(state, row, rightColumn);
         }
         return numberOfAliveNeighbours;
     }

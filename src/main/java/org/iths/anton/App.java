@@ -24,41 +24,37 @@ public class App extends Application {
     public static void main(String[] args) {
 
         //Solution just for console print. Next step is implementation with JAVAFX
+        CellState[][] startBoard = getCellStates();
+        Board board = new Board(startBoard);
 
+        PrintingBoard(startBoard);
+
+        updatesBoardToNextGeneration(board);
+
+        CellState[][] secondBoard = board.getState();
+        PrintingBoard(secondBoard);
+
+        updatesBoardToNextGeneration(board);
+
+        CellState[][] thirdBoard = board.getState();
+        PrintingBoard(thirdBoard);
+
+    }
+
+    private static CellState[][] getCellStates() {
         CellState[][] startBoard = new CellState[][]{
                 {X, X, X, O, X, O, O, X, X, O},
                 {X, X, X, O, O, O, X, O, O, X},
                 {X, X, X, O, O, O, X, X, O, X}
         };
-        Board board = new Board(startBoard);
+        return startBoard;
+    }
 
+    private static void PrintingBoard(CellState[][] startBoard) {
         System.out.println(Arrays.deepToString(startBoard)
                 .replace("], ", "\n")
                 .replace("[", "")
-                .replace("ALIVE", "X")
-                .replace("DEAD", "O")
                 .replace("]]", ""));
-
-        updatesBoardToNextGeneration(board);
-
-        CellState[][] secondBoard = board.getState();
-        System.out.println(Arrays.deepToString(secondBoard)
-                .replace("], ", "\n")
-                .replace("[", "")
-                .replace("ALIVE", "X")
-                .replace("DEAD", "O")
-                .replace("]]", ""));
-
-        updatesBoardToNextGeneration(board);
-
-        CellState[][] thirdBoard = board.getState();
-        System.out.println(Arrays.deepToString(thirdBoard)
-                .replace("], ", "\n")
-                .replace("[", "")
-                .replace("ALIVE", "X")
-                .replace("DEAD", "O")
-                .replace("]]", ""));
-
     }
 
     private static void updatesBoardToNextGeneration(Board board) {
